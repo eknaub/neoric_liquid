@@ -1,14 +1,16 @@
 <div
   class="announcement-bar full-width"
 >
-  <span class="announcement-bar__message">
+  <span>
     {{ 'sections.header.free_shipping' | t }}
   </span>
 </div>
 
-<header>
+<header class="full-width">
   <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
+    <a href="{{ routes.root_url }}">
+      <img src="{{ 'logo-neori.png' | asset_url }}" alt="Logo" style="height: 3rem;" />
+    </a>
   </h2>
 
   <div class="header__menu">
@@ -34,6 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 3rem;
   }
   header a {
     position: relative;
@@ -60,6 +63,7 @@
     text-align: center;
     padding: 1rem;
     font-size: 1rem;
+    font-weight: bold;
   }
 {% endstylesheet %}
 

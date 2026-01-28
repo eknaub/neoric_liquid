@@ -1,0 +1,49 @@
+{% doc %}
+  Renders a badge with icon, title, and subtitle.
+
+  @example
+  {% content_for 'block', type: 'quality-badge', id: 'badge1' %}
+{% enddoc %}
+
+<div class='quality-badge'>
+  <span class='quality-badge-icon'> </span>
+  <div class='quality-badge-text'>
+    <span class='quality-badge-title'>{{ block.settings.title }}</span>
+    <span class='quality-badge-subtitle'>{{ block.settings.subtitle }}</span>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Quality badge",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle" }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+  .badges {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 48px;
+    }
+  }
+  .quality-badge {
+    display: flex;
+    flex-direction: row;
+  }
+  .quality-badge-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  .quality-badge-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+{% endstylesheet %}

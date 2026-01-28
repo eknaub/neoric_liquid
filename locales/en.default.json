@@ -53,5 +53,18 @@
     "header": {
       "free_shipping": "Today free shipping!"
     }
+  },
+  "product": {
+    "include_taxes": "incl. taxes",
+    "add_to_cart": "Add to cart",
+    "availability": {
+      "in_stock_delivery": "In stock, delivery in 2-3 days"
+    },
+    "badge": {
+      "quality": {
+        "title": "100% Quality",
+        "description": "Thanks to soft silicone"
+      }
+    }
   }
 }

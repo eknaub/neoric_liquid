@@ -1,26 +1,26 @@
 <div
-  class="announcement-bar full-width"
+  class='announcement-bar full-width'
 >
   <span>
     {{ 'sections.header.free_shipping' | t }}
   </span>
 </div>
 
-<header class="full-width">
-  <h2 class="header__title">
-    <a href="{{ routes.root_url }}">
-      <img src="{{ 'logo-neori.png' | asset_url }}" alt="Logo" style="height: 3rem;" />
+<header class='full-width'>
+  <h2 class='header__title'>
+    <a href='{{ routes.root_url }}'>
+      <img src='{{ 'logo-neori.png' | asset_url }}' alt='Logo' style='height: 3rem;'>
     </a>
   </h2>
 
-  <div class="header__menu">
+  <div class='header__menu'>
     {% for link in section.settings.menu.links %}
       {{ link.title | link_to: link.url }}
     {% endfor %}
   </div>
 
-  <div class="header__icons">
-    <a href="{{ routes.cart_url }}">
+  <div class='header__icons'>
+    <a href='{{ routes.cart_url }}'>
       {% if cart.item_count > 0 %}
         <sup>{{ cart.item_count }}</sup>
       {% endif %}
@@ -58,7 +58,7 @@
     gap: 1rem;
   }
   div .announcement-bar {
-    background-color: #5F5F5F;
+    background-color: #5f5f5f;
     color: white;
     text-align: center;
     padding: 1rem;

@@ -53,5 +53,18 @@
     "header": {
       "free_shipping": "HEUTE VERSANDKOSTENFREI!"
     }
+  },
+  "product": {
+    "include_taxes": "inkl. MwSt.",
+    "add_to_cart": "In den Einkaufswagen",
+    "availability": {
+      "in_stock_delivery": "Auf Lager, in 2-3 Tagen bei dir"
+    },
+    "badge": {
+      "quality": {
+        "title": "100% Qualität",
+        "description": "Dank weichem Silikon"
+      }
+    }
   }
 }

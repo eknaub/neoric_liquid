@@ -6,7 +6,11 @@
 {% enddoc %}
 
 <div class='badge'>
-  <span class='badge-icon'> </span>
+  <span class='badge-icon'>
+    {% if block.settings.icon %}
+      <img src='{{ block.settings.icon | image_url: width: 50, height: 50 }}' alt='{{ block.settings.title }}'>
+    {% endif %}
+  </span>
   <div class='badge-text'>
     <span class='badge-title'>{{ block.settings.title }}</span>
     <span class='badge-subtitle'>{{ block.settings.subtitle }}</span>
@@ -17,6 +21,11 @@
 {
   "name": "Badge",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Icon"
+    },
     { "type": "text", "id": "title", "label": "Title" },
     { "type": "text", "id": "subtitle", "label": "Subtitle" }
   ],

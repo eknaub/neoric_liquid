@@ -37,6 +37,8 @@
 
         <div>
           {% form 'product', product %}
+            <input type='hidden' name='id' value='{{ product.selected_or_first_available_variant.id }}'>
+            <input type='hidden' name='quantity' value='1'>
             <input class='add-to-cart' type='submit' value='{{ "product.add_to_cart" | t }}'>
           {% endform %}
         </div>

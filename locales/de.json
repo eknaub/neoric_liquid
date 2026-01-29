@@ -26,7 +26,8 @@
     "checkout": "Zur Kasse",
     "title": "Warenkorb",
     "update": "Aktualisieren",
-    "remove": "Entfernen"
+    "remove": "Entfernen",
+    "total": "Gesamt"
   },
   "customers": {
     "login": {

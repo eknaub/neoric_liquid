@@ -1,0 +1,196 @@
+{% comment %}
+  This section is used in the product template to render product page with
+  media, content, and add-to-cart form.
+
+  https://shopify.dev/docs/storefronts/themes/architecture/templates/product
+{% endcomment %}
+
+<div class='product-container'>
+  {% if product.media.size > 0 %}
+    <div class='product'>
+      <div class='pmslider-manual-install'>
+        {% for image in product.images %}
+          <img
+            src='{{ image | image_url: width: 480, height: 480, crop: 'center' }}'
+            alt='{{ image.alt | escape }}'
+            width='480'
+            height='480'
+            loading='lazy'
+          >
+        {% endfor %}
+      </div>
+
+      <div class='product-info-wrapper'>
+        <div class='product-info'>
+          <p class='title'>{{ product.title }}</p>
+          <p class='description'>{{ product.description }}</p>
+          <div class='product-price'>
+            <p class='old-price'>{{ product.compare_at_price | money }}</p>
+            <p class='new-price'>{{ product.price | money }}</p>
+            <p class='taxes'>{{ 'product.include_taxes' | t }}</p>
+          </div>
+          <p class='product-availability'>
+            <span class='availability-indicator'></span>
+            {{ 'product.availability.in_stock_delivery' | t }}
+          </p>
+        </div>
+
+        <div>
+          {% form 'product', product %}
+            <input type='hidden' name='id' value='{{ product.selected_or_first_available_variant.id }}'>
+            <input type='hidden' name='quantity' value='1'>
+            <input class='add-to-cart' type='submit' value='{{ "product.add_to_cart" | t }}'>
+          {% endform %}
+        </div>
+      </div>
+    </div>
+    <div class='badges'>
+      {% content_for 'blocks' %}
+    </div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .product-container {
+    margin: 0 auto;
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 8px;
+      padding: 16px;
+    }
+  }
+  .badges {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 48px;
+    }
+  }
+  .pmslider-manual-install,
+  .pmslider-manual-install img {
+    width: 480px;
+    height: 480px;
+    @media (max-width: 768px) {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .product {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+  .product-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 4px;
+    border: solid 1px black;
+    padding: 16px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 20px #00000029;
+    border: 1px solid #d5d5d5;
+    border-radius: 5px;
+    height: 275px;
+    width: 475px;
+    @media (max-width: 768px) {
+      width: 100%;
+      margin: auto;
+    }
+  }
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .title {
+    text-align: left;
+    font: normal normal 600 25px/30px Montserrat;
+    letter-spacing: 0px;
+    color: #000000;
+  }
+  .description {
+    text-align: left;
+    font: normal normal medium 18px/22px Montserrat;
+    letter-spacing: 0px;
+    color: #000000;
+  }
+  .product-price {
+    display: flex;
+    align-items: baseline;
+    flex-direction: row;
+    gap: 10px;
+  }
+  .new-price {
+    text-align: left;
+    font: normal normal 600 18px/22px Montserrat;
+    letter-spacing: 0px;
+    color: #1f47ff;
+  }
+  .old-price {
+    text-align: left;
+    text-decoration: line-through;
+    font: normal normal 600 18px/22px Montserrat;
+    letter-spacing: 0px;
+    color: #000000;
+  }
+  .taxes {
+    text-align: left;
+    font: normal normal medium 10px/13px Montserrat;
+    letter-spacing: 0px;
+    color: #000000;
+    font-size: 0.6rem;
+  }
+  .availability-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #25a525 0% 0% no-repeat padding-box;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .product-availability {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font: normal normal medium 15px/19px Montserrat;
+    letter-spacing: 0px;
+    color: #25a525;
+  }
+  .box {
+    background: #25a525 0% 0% no-repeat padding-box;
+    border: 1px solid #25a525;
+  }
+  .add-to-cart {
+    background: #1f47ff 0% 0% no-repeat padding-box;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font: normal normal 600 18px/22px Montserrat;
+    letter-spacing: 0px;
+    cursor: pointer;
+    width: 100%;
+    height: 52px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.product",
+  "blocks": [{ "type": "@theme" }],
+  "settings": [],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}

@@ -1,0 +1,68 @@
+{% doc %}
+  Renders a badge with icon, title, and subtitle.
+
+  @example
+  {% content_for 'block', type: 'badge', id: 'badge1' %}
+{% enddoc %}
+
+<div class='badge'>
+  <span class='badge-icon'>
+    {% if block.settings.icon %}
+      <img src='{{ block.settings.icon | image_url: width: 50, height: 50 }}' alt='{{ block.settings.title }}'>
+    {% endif %}
+  </span>
+  <div class='badge-text'>
+    <span class='badge-title'>{{ block.settings.title }}</span>
+    <span class='badge-subtitle'>{{ block.settings.subtitle }}</span>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Badge",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Icon"
+    },
+    { "type": "text", "id": "title", "label": "Title" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle" }
+  ],
+  "presets": [{ "name": "Badge" }]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .badges {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 48px;
+    }
+  }
+  .badge {
+    display: flex;
+    flex-direction: row;
+  }
+  .badge-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  .badge-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .badge-title {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .badge-subtitle {
+    font-size: 14px;
+    color: #666666;
+  }
+{% endstylesheet %}
